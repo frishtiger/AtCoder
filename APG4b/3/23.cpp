@@ -1,3 +1,4 @@
+//#define _GLIBCXX_DEBUG
 #include <algorithm>
 #include <any>
 #include <array>
@@ -93,18 +94,27 @@
 #include <variant>
 #include <vector>
 #include <version>
+
 int main() {
-    std::cout << "こんにちは" << std::endl;
-    std::cout << "AtCoder" << std::endl;
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    int N;
+    std::cin >> N;
+    std::unordered_map<int, int> data;
+    for (int i = 0; i < N; i++) {
+        int a;
+        std::cin >> a;
+        data[a]++;
+    }
+    int max = 0;
+    int mode = 0;
+    for (auto &i : data) {
+        if (i.second > max) {
+            mode = i.first;
+            max = i.second;
+        }
+    }
+    std::cout << mode << ' ' << max << '\n';
     return 0;
 }
-/*
-cd /c/users/tigar/atcoder/apg4b/1
-g++ 01.cpp -o 01.exe
-./01.exe
-
-
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//最頻値
