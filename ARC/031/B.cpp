@@ -167,22 +167,22 @@ bool after_oneisland (int i, int j, int &whole_count, std::vector<std::vector<ch
     }
     return j == 9 ? after_oneisland(i + 1, 0, whole_count, data, first, second) : after_oneisland(i, j + 1, whole_count, data, first, second);
 }
-int main() {
+int whole_count = 0, a = 0, b = 0, c = 0, d = 0;
+std::vector<std::vector<char>> data(10, std::vector<char>(10));
+std::vector<std::vector<bool>> first(10, std::vector<bool>(10, false));
+std::vector<std::vector<bool>> second(10, std::vector<bool>(10, false));
+void combine (int &whole_count, int &a, int &b, int &c, int &d, std::vector<std::vector<char>> &data, std::vector<std::vector<bool>> &first, std::vector<std::vector<bool>> &second) {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    int whole_count = 0, a = 0, b = 0, c = 0, d = 0;
-    std::vector<std::vector<char>> data(10, std::vector<char>(10));
     input(0, 0, whole_count, data);
     first_cell(0, 0, data, a, b);
     if (before_oneisland(a, b, whole_count, data)) std::cout << "YES" << '\n';
     else {
-        std::vector<std::vector<bool>> first(10, std::vector<bool>(10, false));
-        std::vector<std::vector<bool>> second(10, std::vector<bool>(10, false));
         first_island(a, b, data, first);
         second_cell(0, 0, data, first, c, d);
         second_island(c, d, data, first, second);
         std::cout << (after_oneisland(0, 0, whole_count, data, first, second) ? "YES" : "NO") << '\n';
     }
-    return 0;
 }
+int main() {combine(whole_count, a, b, c, d, data, first, second);}
 //埋め立て
