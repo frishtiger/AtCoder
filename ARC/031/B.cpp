@@ -171,7 +171,7 @@ bool after_oneisland (int i, int j) {
     }
     return j == 9 ? after_oneisland(i + 1, 0) : after_oneisland(i, j + 1);
 }
-void combine () {
+void x() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
     input(0, 0);
@@ -184,5 +184,5 @@ void combine () {
         std::cout << (after_oneisland(0, 0) ? "YES" : "NO") << '\n';
     }
 }
-int main() {combine();}
+int main() {x();}
 //埋め立て
