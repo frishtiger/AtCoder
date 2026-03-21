@@ -125,9 +125,9 @@
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    int M;
-    std::cin >> M;
-    std::cout << 48 - M << '\n';
+    int R, G;
+    std::cin >> R >> G;
+    std::cout << G + G - R << '\n';
     return 0;
 }
-//New Year
+//Rating Goal
