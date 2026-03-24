@@ -123,10 +123,39 @@
 #include <stdfloat>
 
 int main() {
-    std::cout << "Hello, World!\n";
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    int N;
+    std::cin >> N;
+    std::vector<int> time(N + 2, 1); //最初と最後に1分間速度0で走ったとする
+    for (int i = 0; i < N; i++) {
+        std::cin >> time[i + 1];
+        time[i + 1] *= 2; //交点をすべて格子点に
+    }
+    std::vector<int> velocity(N + 2, 0); //両端での速度は0
+    for (int i = 0; i < N; i++) {
+        std::cin >> velocity[i + 1];
+        velocity[i + 1] *= 2; //交点をすべて格子点に
+    }
+    std::vector<int> time_sum(N + 3, 0);
+    for (int i = 0; i < N + 2; i++) {
+        time_sum[i + 1] = time_sum[i] + time[i];
+    }
+    std::vector<int> speed(time_sum[N + 2], 100000); //1秒ごとの速度の最大値
+    for (int i = 0; i < time_sum[N + 2]; i++) {
+        for (int j = 0; j < N + 2; j++) {
+            int max_speed = velocity[j] + std::max(std::max(time_sum[j] - i, i - time_sum[j + 1]), 0);
+            if (max_speed < speed[i]) {
+                speed[i] = max_speed;
+            }
+        }
+    }
+    int sum = 0; //正しい値の4倍
+    for (int i = 0; i < time_sum[N + 2]; i++) {
+        sum += speed[i];
+    }
+    std::cout << std::fixed << std::setprecision(15);
+    std::cout << (double)sum / 4.0 << '\n';
+    return 0;
 }
-/*
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//AtCoder Express

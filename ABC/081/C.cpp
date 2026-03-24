@@ -123,10 +123,30 @@
 #include <stdfloat>
 
 int main() {
-    std::cout << "Hello, World!\n";
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    int N;
+    int K;
+    std::cin >> N >> K;
+    std::unordered_map<int, int> data;
+    for (int i = 0; i < N; i++) {
+        int a;
+        std::cin >> a;
+        data[a]++;
+    }
+    std::vector<int> vec;
+    for (auto &i : data) {
+        vec.push_back(i.second);
+    }
+    std::sort(vec.begin(), vec.end());
+    int sum = 0;
+    int kind = vec.size();
+    for (size_t i = 0; i < vec.size() + 1; i++) {
+        if (kind <= K) break;
+        sum += vec[i];
+        kind--;
+    }
+    std::cout << sum << '\n';
+    return 0;
 }
-/*
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//Not so Diverse

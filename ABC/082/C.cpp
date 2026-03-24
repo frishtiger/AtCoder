@@ -123,10 +123,19 @@
 #include <stdfloat>
 
 int main() {
-    std::cout << "Hello, World!\n";
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    int N;
+    std::cin >> N;
+    std::unordered_map<int, int> data;
+    for (int i = 0; i < N; i++) {
+        int a;
+        std::cin >> a;
+        data[a]++;
+    }
+    int erase = 0;
+    for (auto &i : data) (i.second >= i.first) ? erase += i.second - i.first : erase += i.second;
+    std::cout << erase << '\n';
+    return 0;
 }
-/*
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//Good Sequence

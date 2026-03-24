@@ -123,10 +123,21 @@
 #include <stdfloat>
 
 int main() {
-    std::cout << "Hello, World!\n";
+    int N;
+    scanf("%d", &N);
+    std::vector<int> vec(N);
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &vec[i]);
+    }
+    int count = 0;
+    while (1) {
+        for (int j = 0; j < N; j++) {
+            if (vec[j] % 2 == 0) vec[j] /= 2;
+            else goto skip;
+            if (j == N - 1) count++;
+        }
+    }
+    skip:
+    printf("%d\n", count);
 }
-/*
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//Shift only

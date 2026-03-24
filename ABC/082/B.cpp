@@ -123,10 +123,14 @@
 #include <stdfloat>
 
 int main() {
-    std::cout << "Hello, World!\n";
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::string s, t;
+    std::cin >> s >> t;
+    std::sort(s.begin(), s.end());
+    std::sort(t.begin(), t.end());
+    std::reverse(t.begin(), t.end());
+    std::cout << ((s < t) ? "Yes\n" : "No\n");
+    return 0;
 }
-/*
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//Two Anagrams

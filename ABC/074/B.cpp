@@ -123,10 +123,17 @@
 #include <stdfloat>
 
 int main() {
-    std::cout << "Hello, World!\n";
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    int N, K;
+    std::cin >> N >> K;
+    std::vector<int> vector(N);
+    for (int i = 0; i < N; i++) {
+        std::cin >> vector[i];
+    }
+    int distance = 0;
+    for (int i = 0; i < N; i++) distance += std::min(std::abs(vector[i]), std::abs(vector[i] - K));
+    std::cout <<  2 * distance << '\n';
+    return 0;
 }
-/*
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//Collecting Balls (Easy Version)

@@ -123,10 +123,32 @@
 #include <stdfloat>
 
 int main() {
-    std::cout << "Hello, World!\n";
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::string s, T;
+    std::string S = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
+    std::string current_S;
+    std::cin >> s >> T;
+    bool same = false;
+    bool UNRESTORABLE = true;
+    for (size_t i = 0; i < s.size() - T.size() + 1; i++) {
+        same = true;
+        for (size_t j = 0; j < T.size(); j++) {
+            if (s[i + j] != T[j] && s[i + j] != '?') same = false;
+        }
+        if (same) {
+            current_S = s;
+            for (size_t j = 0; j < T.size(); j++) {
+                current_S[i + j] = T[j];
+            }
+            for (size_t j = 0; j < current_S.size(); j++) {
+                if (current_S[j] == '?') current_S[j] = 'a';
+            }
+            if (current_S < S) S = current_S;
+            UNRESTORABLE = false;
+        }
+    }
+    std::cout << ((UNRESTORABLE) ? "UNRESTORABLE" : S) << '\n';
+    return 0;
 }
-/*
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//Dubious Document 2

@@ -123,10 +123,8 @@
 #include <stdfloat>
 
 int main() {
-    std::cout << "Hello, World!\n";
+    int s;
+    scanf("%d", &s);
+    printf("%d\n", s % 9);
 }
-/*
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//Placing Marbles

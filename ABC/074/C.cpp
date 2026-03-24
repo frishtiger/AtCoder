@@ -123,10 +123,31 @@
 #include <stdfloat>
 
 int main() {
-    std::cout << "Hello, World!\n";
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    int A, B, C, D, E, F;
+    int sugar_mass = 0;
+    double sugar = 0.0;
+    double max_sugar = 0.0;
+    std::cin >> A >> B >> C >> D >> E >> F;
+    int total_mass = 100 * A;
+    for (int i = 0; i <= F / (100 * A); i++) {
+        for (int j = 0; j <= (F - 100 * A * i) / (100 * B); j++) {
+            if (i == 0 && j == 0) continue;
+            for (int k = 0; k <= (F - 100 * A * i - 100 * B * j) / C; k++) {
+                for (int l = 0; l <= (F - 100 * A * i - 100 * B * j - C * k) / D; l++) {
+                    if ((A * i + B * j) * E < C * k + D * l) break;
+                    sugar = (double)(C * k + D * l) / (double)(A * i + B * j);
+                    if (sugar > max_sugar) {
+                        max_sugar = sugar;
+                        total_mass = 100 * A * i + 100 * B * j + C * k + D * l;
+                        sugar_mass = C * k + D * l;
+                    }
+                }
+            }
+        }
+    }
+    std::cout << total_mass << ' ' << sugar_mass << '\n';
+    return 0;
 }
-/*
-git add .
-git commit -m "update solutions March"
-git push
-*/
+//Sugar Water
