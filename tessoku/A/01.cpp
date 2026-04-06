@@ -9,3 +9,8 @@ int main() {
     return 0;
 }
 //The First Problem
+/*
+git add .
+git commit -m "update solutions March"
+git push
+*/
